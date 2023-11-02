@@ -1,4 +1,5 @@
 require('dotenv').config()
+var bodyParser = require("body-parser");
 
 let express = require('express');
 let app = express();
@@ -38,6 +39,11 @@ app.use(myLogger)
 //     console.log(logstr)
 //     next();
 // });
+
+//11.Use body-parser to Parse POST Requests
+//依赖body-parser的包已经被安装,在package.json可看到。
+app.use(bodyParser.urlencoded({extended: false})) //处理form表单 默认application/x-www-form-urlencoded类别的URL 编码数据。 extended=false 时，它使用经典编码 querystring 库。 当 extended=true时，它使用 qs 库进行解析。
+// app.use(bodyParser.json()); //可以处理json post数据
 
 
 //3.Serve an HTML File
@@ -105,10 +111,14 @@ app.get('/name',function(req,res){
     */
 })
 
-//11.Use body-parser to Parse POST Requests
-//依赖body-parser的包已经被安装,在package.json可看到。
 
-
+//12.Get Data from POST Requests
+app.post("/name",function(req,res) {
+    let reqdata = req.body
+    console.log(reqdata)
+    let resdata = {name : reqdata.first + " " + reqdata.last}
+    res.json(resdata)
+})
 
 
 
