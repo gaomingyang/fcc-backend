@@ -43,7 +43,9 @@ app.use(myLogger)
 //11.Use body-parser to Parse POST Requests
 //依赖body-parser的包已经被安装,在package.json可看到。
 app.use(bodyParser.urlencoded({extended: false})) //处理form表单 默认application/x-www-form-urlencoded类别的URL 编码数据。 extended=false 时，它使用经典编码 querystring 库。 当 extended=true时，它使用 qs 库进行解析。
-// app.use(bodyParser.json()); //可以处理json post数据
+
+// app.use(bodyParser.json()); //可以处理post json格式的数据
+
 
 
 //3.Serve an HTML File

@@ -14,3 +14,5 @@ introduce: https://www.freecodecamp.org/learn/back-end-development-and-apis
 * online access: https://boilerplate-express.gaomingyangcn.repl.co
 
 
+## Part3 MongoDB and Mongoose
+Mongoose is a popular npm package for interacting with MongoDB. 
