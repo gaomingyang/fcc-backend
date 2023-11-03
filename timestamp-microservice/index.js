@@ -7,6 +7,13 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
+const myLogger = function(req,res,next){
+  var logstr = req.method + " " + req.path + " - " + req.ip;
+  console.log(logstr)
+  next();
+}
+app.use(myLogger)
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
@@ -45,7 +52,6 @@ app.get('/', (req, res) => {
 app.get("/api/:input",function(req,res){
   var input = req.params.input
   // console.log(typeof input) //都是string，不管是时间戳还是时间字符串，所以无法用typeof是number还是string对比
-
   var timestamp,utcString
 
   let errdata = {"error":"Invalid Date"}
@@ -76,11 +82,18 @@ app.get("/api/:input",function(req,res){
   res.json(output)
 });
 
+// 处理没有参数的路由
+app.get('/api', (req, res) => {
+    const date = new Date();
+    var timestamp = date.getTime();
+    var utcString = date.toUTCString();
+    res.json({unix:timestamp,utc:utcString})
+});
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
-});
+// app.get("/api/hello", function (req, res) {
+//   res.json({greeting: 'hello API'});
+// });
 
 
 
