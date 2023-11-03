@@ -24,7 +24,7 @@ app.use(express.static('public'));
 
 //index page data
 app.get('/', (req, res) => {
-  let project_url = 'https://boilerplate-project-timestamp.gaomingyangcn.repl.co';
+  let project_url = 'https://timestamp.gaomingyangcn.repl.co';
 
   let currentDate = new Date();
   let year = currentDate.getFullYear();
