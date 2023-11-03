@@ -3,9 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 var bodyParser = require("body-parser");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const shortid = require('shortid');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URI);
 
 app.set('view engine', 'ejs');
 
@@ -46,7 +47,7 @@ function validateURL(req, res, next) {
     next();
   } else {
     // URL 不合法，返回错误响应
-    res.status(400).send('invalid url');
+    res.json({error:'invalid url'});
   }
 }
 
@@ -55,30 +56,37 @@ app.use('/public', express.static(`${process.cwd()}/public`));
 
 app.get('/', (req, res) => {
   let base_url = process.env.BASE_URL;
-  res.render('index', { code: code, base_url : base_url});
+  res.render('index', { base_url : base_url});
 });
 
-app.post('/api/shorturl',validateURL,(req,res)=>{
+app.post('/api/shorturl',validateURL, async (req,res)=>{
   let url = req.body.url;
   console.log("get url:",url)
-  
-  //先查询是否存在
+  url = url.trim(); //去除两端空格
 
-  
+  //先查询是否存在,若存在，直接返回
+  const existing = await ShortURL.findOne({ longURL:url });
+  if(existing){
+    let data = {original_url:url,short_url:existing._id}
+    return res.json(data)
+  }
 
-  //不存在，则创建
+  //不存在，则创建，然后返回
   // 获取下一个可用的数字 ID
-  const nextId =  ShortURL.countDocuments() + 1;
+  const nextId = await ShortURL.countDocuments() + 1;
+
+  // let shortId = shortid.generate();//这种生成的是字符串类别的,目前不符合题目要求。但是实际上更好。
+  // console.log("shortId:",shortId)
+
   const item = new ShortURL({_id:nextId,longURL:url})
-  item.save().then()
+  await item.save()
   
-  output = {original_url:url,short_url:123}
+  output = {original_url:url,short_url:nextId}
   res.json(output);
-  // res.send('URL is valid');
 })
 
 
-app.get('/api/shorturl/:id',function(req,res){
+app.get('/api/shorturl/:id',async function(req,res){
   let id = req.params.id
   //空值判断
   if (!id){
@@ -90,11 +98,17 @@ app.get('/api/shorturl/:id',function(req,res){
     return res.json({error:"Wrong format"});
   }
   //查询
-  //如果找不到
-  
-  //如果找到了，直接跳转过去
-
+  let item = await ShortURL.findById(id)
+  if(!item){
+    return res.status(404).json({ error: 'No short URL found for the given input' });
+  }
+  //找到了就直接跳转
+  res.redirect(item.longURL);
 });
+
+app.get('/api/shorturl',function(req,res){
+  res.status(404).send('Not found');
+})
 
 // app.get('/', function(req, res) {
 //   res.sendFile(process.cwd() + '/views/index.html');
