@@ -42,18 +42,34 @@ app.get('/', (req, res) => {
 // });
 
 
-app.get("/api/:timestr",function(req,res){
-  var timestr = req.params.timestr
+app.get("/api/:input",function(req,res){
+  var input = req.params.input
+  // console.log(typeof input) //都是string，不管是时间戳还是时间字符串，所以无法用typeof是number还是string对比
+
   var timestamp,utcString
 
-  if (/^\d+$/.test(timestr)) {
-    //传入纯数字，是时间戳，Date解析这个需要用整型
-    timestamp=parseInt(timestr, 10);
-    utcString = new Date(timestamp).toUTCString();
-  }else{
-    //传入是时间字符串，直接解析字符串
-    timestamp = new Date(timestr).getTime();
-    utcString = new Date(timestamp).toUTCString();
+  let errdata = {"error":"Invalid Date"}
+  const timestampRegex = /^\d{13}$/ //判断是否是13位的时间戳
+  if(timestampRegex.test(input)){
+    //如果是时间戳格式
+    const parsedTimestamp = parseInt(input, 10);
+    if (isNaN(parsedTimestamp)) {
+      res.json(errdata);
+      return;
+    }
+    timestamp = parsedTimestamp
+    let date = new Date(parsedTimestamp);
+    utcString = date.toUTCString();
+  } else {
+    //不是时间戳格式，按时间字符串处理
+    let parsedDate = Date.parse(input);
+    if (isNaN(parsedDate)) {
+      res.json(errdata);
+      return;
+    }
+    let date = new Date(parsedDate);
+    timestamp = date.getTime();
+    utcString = date.toUTCString();
   }
 
   let output = {unix:timestamp,utc:utcString}
