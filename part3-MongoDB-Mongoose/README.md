@@ -21,7 +21,23 @@ MongoDB Atlas is a MongoDB Database-as-a-Service platform, which means that they
 [Introduction to Mongoose for MongoDB
 ](https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/)
 
-
+demo
+```
+UserModel.find()               // find all users
+  .skip(100)                   // skip the first 100 items
+  .limit(10)                   // limit to 10 items
+  .sort({ firstName: 1 })      // sort ascending by firstName
+  .select({ firstName: true }) // select firstName only
+  .exec()                      // execute the query
+  .then((docs) => {
+    console.log(docs);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+if don't use `then`, could insert callback function in exec. example: `exec((err,res)=>{});`
 
 mongoose
 https://mongoosejs.com/docs/
+

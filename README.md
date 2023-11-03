@@ -19,3 +19,28 @@ introduce: https://www.freecodecamp.org/learn/back-end-development-and-apis
 Mongoose is a popular npm package for interacting with MongoDB. 
 
 使用MongoDB Atlas的一个免费套餐来学习。
+
+
+## Projects
+
+
+### 1.Timestamp Microservice
+[requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/timestamp-microservice)
+
+### 2.Request Header Parser Microservice
+[requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/request-header-parser-microservice)
+
+### 3.URL Shortener Microservice
+[requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/url-shortener-microservice)
+
+可以用mongodb存储，生成一个id返回。
+
+### 4.Exercise Tracker
+
+https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker
+
+用mongodb
+
+### 5.File Metadata Microservice
+
+https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/file-metadata-microservice
