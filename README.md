@@ -13,6 +13,9 @@ introduce: https://www.freecodecamp.org/learn/back-end-development-and-apis
 * project deploy: https://replit.com/@gaomingyangcn/boilerplate-express
 * online access: https://boilerplate-express.gaomingyangcn.repl.co
 
+更推荐的：https://expressjs.com/en/starter/hello-world.html
 
 ## Part3 MongoDB and Mongoose
 Mongoose is a popular npm package for interacting with MongoDB. 
+
+使用MongoDB Atlas的一个免费套餐来学习。

@@ -18,7 +18,7 @@ const router = express.Router();
 
 const enableCORS = function (req, res, next) {
   if (!process.env.DISABLE_XORIGIN) {
-    const allowedOrigins = ["https://www.freecodecamp.org"];
+    const allowedOrigins = ["https://www.freecodecamp.org","*"];
     const origin = req.headers.origin;
     if (!process.env.XORIGIN_RESTRICT || allowedOrigins.indexOf(origin) > -1) {
       console.log(req.method);
@@ -101,7 +101,7 @@ router.get("/create-and-save-person", function (req, res, next) {
         return next(err);
       }
       res.json(pers);
-      pers.remove();
+      pers.remove(); //上面输出后这里就立即删掉了，所以mongodb里面没有数据
     });
   });
 });
@@ -397,6 +397,7 @@ router.post("/query-tools", function (req, res, next) {
   });
 });
 
+//这里给router用的路由加上了前缀
 app.use("/_api", enableCORS, router);
 
 // Error handler
