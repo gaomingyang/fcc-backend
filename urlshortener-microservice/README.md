@@ -1,3 +1,16 @@
 # URL Shortener Microservice
 
-This is the boilerplate code for the URL Shortener Microservice project. Instructions for building your project can be found at https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/url-shortener-microservice.
+## run
+```
+node index.js
+```
+
+
+## note
+如果没安装，需要先安装模板引擎
+```
+npm install ejs
+npm install body-parser
+npm install shortid
+npm install mongoose
+```
