@@ -20,20 +20,25 @@ app.use(myLogger)
 // 使用 body-parser 中间件来解析 POST 请求的数据
 app.use(bodyParser.urlencoded({extended: false}))
 
-
-
 app.use(express.static('public'))
 
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + '/views/index.html')
 // });
 
+//views
 app.get('/', (req, res) => {
   let base_url = process.env.BASE_URL;
   res.render('index', { base_url : base_url});
 });
 
+//mount the user route in app
+const usersRouter = require('./routes/users');
+app.use('/api/users',usersRouter);
 
+//mount the exerciselogs routes
+const exerciseLogsRouter = require('./routes/logs')
+app.use('/api/users',exerciseLogsRouter);
 
 
 const listener = app.listen(process.env.PORT || 3000, () => {

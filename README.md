@@ -47,7 +47,9 @@ My Project: [https://urlshortener.gaomingyangcn.repl.co](https://urlshortener.ga
 
 https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker
 
-用mongodb
+用mongodb存储数据
+
+My Project: [https://exercisetracker.gaomingyangcn.repl.co](https://exercisetracker.gaomingyangcn.repl.co)
 
 ### 5.File Metadata Microservice
 

@@ -10,12 +10,20 @@
 <body>
     <div class="container">
         <h1>Exercise tracker</h1>
+
+        <p class="notice">BASE URL: <code><%= base_url %></code></p>
         <div id="forms">
             <form action="/api/users" method="post">
                 <h3>Create a New User</h3>
                 <p><code>POST /api/users</code></p>
-                <input id="uname" type="text" name="username" placeholder="username" />
+                <input id="uname" type="text" name="username" placeholder="username*" />
                 <input type="submit" value="Submit" />
+            </form>
+
+            <form action="/api/users" method="get">
+                <h3>Get all Users</h3>
+                <p><code>GET /api/users</code></p>
+                <input type="submit" value="Get all users" />
             </form>
 
             <form id="exercise-form" method="post">
@@ -28,17 +36,17 @@
                 <input type="submit" value="Submit" />
             </form>
 
-            <form>
+            <form id="logs-form" method="get">
                 <h3>Get axercise log</h3>
                 <p><code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code></p>
                 <p><strong>[ ]</strong> = optional</p>
                 <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
 
-                <input id="uid" type="text" name=":_id" placeholder=":_id" />
-                <input id="from_date" type="text" name="from_date" placeholder="from_date (yyyy-mm-dd)" />
-                <input id="to_date" type="text" name="to_date" placeholder="to_date (yyyy-mm-dd)" />
-                <input id="limit" type="text" name="limit" placeholder="limit default 10" "/>
-                <input type=" submit" value="Submit" />
+                <input id="search_uid" type="text" name="_id" placeholder=":_id" value="65457bf76d5fdcf2be93eb87"/>
+                <input id="from" type="text" name="from" placeholder="from (yyyy-mm-dd)" value="2023-10-01"/>
+                <input id="to" type="text" name="to" placeholder="to (yyyy-mm-dd)" value="2023-11-03"/>
+                <input id="limit" type="text" name="limit" placeholder="limit" value="10"/>
+                <input type="submit" value="Submit" />
             </form>
         </div>
     </div>
@@ -50,13 +58,34 @@
 
 
     <script>
+        //提交锻炼数据表单
         const exerciseForm = document.getElementById("exercise-form");
-
         exerciseForm.addEventListener("submit", () => {
             const userId = document.getElementById("uid").value;
             exerciseForm.action = `/api/users/${userId}/exercises`;
-
             exerciseForm.submit();
+        });
+
+        const logsForm = document.getElementById("logs-form");
+        logsForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const userId = document.getElementById("search_uid").value;
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const limit = document.getElementById("limit").value;
+
+            var url = "/api/users/"+userId+'/logs?';
+            if (from != "") {
+                url += "from="+from+"&"
+            }
+            if (to != "") {
+                url += "to="+to+"&"
+            }
+            if (limit != "") {
+                url += "limit="+limit
+            }
+            console.log(url);
+            window.location.href=url
         });
     </script>
 </body>

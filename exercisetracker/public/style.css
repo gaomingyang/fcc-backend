@@ -14,6 +14,11 @@ body {
   /* margin: 0 auto; */
 }
 
+.notice{
+  margin-top: 20px;
+  text-align: center;
+}
+
 h1 {
   font-weight: bold;
   text-align: center;
@@ -21,14 +26,11 @@ h1 {
 
 
 #forms{
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-around;
 }
 
-p {
-  max-width: 900px;
-}
 
 form {
   margin-bottom: 25px;
