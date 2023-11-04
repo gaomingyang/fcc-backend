@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User')
+// const User = require('../models/User')
+const path = require('path');
+const User = require(path.join(__dirname,'..','/models/User'));
 
 //add a user
 router.post('/',async (req,res)=>{

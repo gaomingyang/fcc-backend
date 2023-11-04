@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const ExerciseLog = require('../models/Exerciselog');
-const User = require('../models/User')
+// const ExerciseLog = require('../models/Exerciselog');
+// const User = require('../models/User')
+
+
+const path = require('path');
+const ExerciseLog = require(path.join(__dirname,'..','/models/Exerciselog'));
+const User = require(path.join(__dirname,'..','/models/User'));
 
 // add an exercise log
 router.post('/:_id/exercises', async (req,res) => {
     user_id = req.params._id;
-    const {description,duration,date} = req.body;
+    let {description,duration,date} = req.body;
 
     var user;
     try {

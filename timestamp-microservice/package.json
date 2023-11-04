@@ -11,15 +11,6 @@
     "ejs": "^3.1.9",
     "express": "^4.12.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/freeCodeCamp/boilerplate-project-timestamp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/freeCodeCamp/freeCodeCamp/issues"
-  },
-  "homepage": "https://github.com/freeCodeCamp/boilerplate-project-timestamp#readme",
-  "author": "freeCodeCamp <team@freecodecamp.org>",
   "keywords": [
     "node",
     "express",

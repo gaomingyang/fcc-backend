@@ -33,11 +33,12 @@ app.get('/', (req, res) => {
 });
 
 //mount the user route in app
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users'); //这种方式在本地正常，在https://replit.com/上不行。
+const usersRouter = require(__dirname +'/routes/users');
 app.use('/api/users',usersRouter);
 
 //mount the exerciselogs routes
-const exerciseLogsRouter = require('./routes/logs')
+const exerciseLogsRouter = require(__dirname+'/routes/logs')
 app.use('/api/users',exerciseLogsRouter);
 
 
