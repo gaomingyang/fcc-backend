@@ -15,7 +15,7 @@ router.post('/:_id/exercises', async (req,res) => {
         return res.json({error:"user_id doesn't exist!"});
     }
 
-    if(date == "") {
+    if(date == ""|| date== undefined) {
         let d = new Date()
         let month = String(d.getMonth() + 1).padStart(2, '0')
         let day = String(d.getDate()).padStart(2, '0');
@@ -49,17 +49,11 @@ router.post('/:_id/exercises', async (req,res) => {
 });
 
 
-//retrieve a full exercise log of one user.
+//retrieve logs of one user.
 router.get('/:_id/logs',async (req,res)=>{
     let user_id = req.params._id;
     let {from,to,limit} = req.query;
     
-
-    if(limit == undefined){
-        limit = 10
-    }
-    console.log("limit:",limit)
-
     //先判断用户是否存在
     var user;
     try {
@@ -70,11 +64,21 @@ router.get('/:_id/logs',async (req,res)=>{
 
     //get logs
     try{
-        let logs = await ExerciseLog.find({user_id:user_id});
+        let query = ExerciseLog.find({user_id:user_id});
 
+        if(from && to ) {
+            query.where('date').gte(from).lte(to);
+        }else if (from) {
+            query.where('date').gte(from);
+        }else if (to) {
+            query.where('date').lte(to);
+        }
+        
+        if (limit){
+            query.limit(limit);
+        }
 
-
-
+        let logs = await query.exec();
 
         var outlogs = []
         logs.forEach(function(d){
@@ -94,8 +98,6 @@ router.get('/:_id/logs',async (req,res)=>{
     } catch(err) {
         res.status(500).json({error:err.message});
     }
-    
-
 });
 
 module.exports = router;
