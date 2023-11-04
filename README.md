@@ -23,6 +23,20 @@ Mongoose is a popular npm package for interacting with MongoDB.
 
 ## Projects
 
+**Using Technology:**
+* Node.js
+* MongoDB
+
+**Libraries:**  
+* experss
+* ejs - template engine
+* cors
+* mongoose
+* body-parser
+* dotenv   parse .env,useing:process.env.xxx
+* shortid   generate shortid
+* multer
+
 
 ### 1.Timestamp Microservice
 [requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/timestamp-microservice)
@@ -39,18 +53,20 @@ My Project: [https://headerparser.gaomingyangcn.repl.co](https://headerparser.ga
 ### 3.URL Shortener Microservice
 [requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/url-shortener-microservice)
 
-可以用mongodb存储，生成一个id返回。
-
 My Project: [https://urlshortener.gaomingyangcn.repl.co](https://urlshortener.gaomingyangcn.repl.co)
 
+using mongodb storage data.
+
+
 ### 4.Exercise Tracker
-
-https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker
-
-用mongodb存储数据
+[requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker)
 
 My Project: [https://exercisetracker.gaomingyangcn.repl.co](https://exercisetracker.gaomingyangcn.repl.co)
 
-### 5.File Metadata Microservice
+using mongodb storage data.
 
-https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/file-metadata-microservice
+
+### 5.File Metadata Microservice
+[requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/file-metadata-microservice)
+
+My Project: [https://filemetadata.gaomingyangcn.repl.co](https://filemetadata.gaomingyangcn.repl.co)
