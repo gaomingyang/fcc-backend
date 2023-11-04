@@ -37,6 +37,8 @@ Mongoose is a popular npm package for interacting with MongoDB.
 * shortid   generate shortid
 * multer
 
+Projects are deployed on https://replit.com/.  
+Kindly note: Using the Base Workspace, which has relatively lower specifications (0.5 GiB Memory, 0.5vCPUs), might result in slower access. Please be patient while waiting.  
 
 ### 1.Timestamp Microservice
 [requirements](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/timestamp-microservice)
